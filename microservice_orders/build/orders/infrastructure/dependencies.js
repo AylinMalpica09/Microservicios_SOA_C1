@@ -1,0 +1,17 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.getOrderController = exports.getOrderUseCase = exports.createOrderController = exports.createOrderUseCase = exports.changeStatusOrderController = exports.changeStatusOrderUseCase = exports.database = void 0;
+const mysqlOrderRepository_1 = require("./repository/mysqlOrderRepository");
+const changeStatusOrderUseCase_1 = require("../application/useCase/changeStatusOrderUseCase");
+const ChangeStatusOrderController_1 = require("./controller/ChangeStatusOrderController");
+const createOrderUseCase_1 = require("../application/useCase/createOrderUseCase");
+const createOrderController_1 = require("./controller/createOrderController");
+const getOrderUseCase_1 = require("../application/useCase/getOrderUseCase");
+const getOrderController_1 = require("./controller/getOrderController");
+exports.database = new mysqlOrderRepository_1.MysqlOrderRepository();
+exports.changeStatusOrderUseCase = new changeStatusOrderUseCase_1.ChangeStatusOrderUseCase(exports.database);
+exports.changeStatusOrderController = new ChangeStatusOrderController_1.ChangeStatusOrderController(exports.changeStatusOrderUseCase);
+exports.createOrderUseCase = new createOrderUseCase_1.CreateOrderUseCase(exports.database);
+exports.createOrderController = new createOrderController_1.CreateOrderController(exports.createOrderUseCase);
+exports.getOrderUseCase = new getOrderUseCase_1.GetOrderUseCase(exports.database);
+exports.getOrderController = new getOrderController_1.GetOrderController(exports.getOrderUseCase);
